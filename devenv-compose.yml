@@ -1,0 +1,78 @@
+duraark-sessions:
+  image: duraark/duraark-sessions:0.7.0
+  # build: ./duraark-sessions
+  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config
+  ports:
+    - "5011:5011"
+  volumes:
+    - /duraark-storage:/duraark-storage
+    - ./duraark-sessions:/duraark/microservice
+
+duraark-metadata:
+  image: duraark/duraark-metadata:0.7.0
+  # build: ./duraark-sessions
+  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config
+  ports:
+    - "5012:5012"
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - ./duraark-metadata:/duraark/microservice
+
+duraark-sda:
+  image: duraark/duraark-sda:0.7.0
+  # build: ./duraark-sda
+  ports:
+    - "5013:5013"
+  volumes:
+    - ./duraark-sda:/microservice
+
+duraark-geometricenrichment:
+  image: duraark/duraark-geometricenrichment:0.7.0
+  # build: ./duraark-geometricenrichment
+  # command: nodemon --watch /microservice/api -w /microservice/config
+  ports:
+    - "5014:5014"
+  privileged: true
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - ./duraark-geometricenrichment:/microservice
+    - /duraark-storage:/duraark-storage
+
+duraark-digitalpreservation:
+  image: duraark/duraark-digitalpreservation:0.7.0
+  # build: ./duraark-digitalpreservation
+  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config
+  ports:
+    - "5015:5015"
+  links:
+    - duraark-sessions
+  volumes:
+    - ./duraark-digitalpreservation:/duraark/microservice
+
+workbench-ui:
+  image: local/workbench-ui:0.7.0
+  # build: ./workbench-ui
+  # entrypoint: ember
+  # command: serve --watcher=polling
+  ports:
+    - "4200:4200"
+  environment:
+    - DURAARK_API_ENDPOINT=http://localhost
+    # - DURAARK_API_USE_PORTS
+  volumes:
+    - ./workbench-ui:/duraark/workbench-ui
+
+web:
+  image: duraark/api-gatekeeper:0.7.0
+  # build: ./api-gatekeeper
+  ports:
+    - "80:80"
+  links:
+    - duraark-sessions
+    - duraark-metadata
+    - duraark-sda
+    - duraark-geometricenrichment
+    - duraark-digitalpreservation
+    - workbench-ui

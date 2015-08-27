@@ -1,0 +1,15 @@
+[submodule "duraark-sessions"]
+	path = duraark-sessions
+	url = https://github.com/DURAARK/duraark-sessions.git
+[submodule "duraark-metadata"]
+	path = duraark-metadata
+	url = https://github.com/DURAARK/duraark-metadata.git
+[submodule "duraark-sda"]
+	path = duraark-sda
+	url = https://github.com/DURAARK/duraark-sda.git
+[submodule "duraark-geometricenrichment"]
+	path = duraark-geometricenrichment
+	url = https://github.com/DURAARK/duraark-geometricenrichment.git
+[submodule "duraark-digitalpreservation"]
+	path = duraark-digitalpreservation
+	url = https://github.com/DURAARK/duraark-digitalpreservation.git

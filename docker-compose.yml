@@ -1,0 +1,52 @@
+duraark-sessions:
+  image: duraark/duraark-sessions:0.7.0
+  exports:
+    - "5011:5011"
+  volumes:
+    - /duraark-storage:/duraark-storage
+
+duraark-metadata:
+  image: duraark/duraark-metadata:0.7.0
+  ports:
+    - "5012:5012"
+  volumes_from:
+    - duraark-sessions
+
+duraark-sda:
+  image: duraark/duraark-sda:0.7.0
+  ports:
+    - "5013:5013"
+
+duraark-geometricenrichment:
+  image: duraark/duraark-geometricenrichment:0.7.0
+  ports:
+    - "5014:5014"
+  privileged: true
+  volumes_from:
+    - duraark-sessions
+
+duraark-digitalpreservation:
+  image: duraark/duraark-digitalpreservation:0.7.0
+  ports:
+    - "5015:5015"
+  volumes:
+    - duraark-sessions
+
+workbench-ui:
+  image: duraark/workbench-ui:0.7.0
+  ports:
+    - "4200:4200"
+  environment:
+    - DURAARK_API_ENDPOINT=http://mimas.cgv.tugraz.at
+
+web:
+  image: duraark/api-gatekeeper:0.7.0
+  ports:
+    - "80:80"
+  links:
+    - duraark-sessions
+    - duraark-metadata
+    - duraark-sda
+    - duraark-geometricenrichment
+    - duraark-digitalpreservation
+    - workbench-ui
