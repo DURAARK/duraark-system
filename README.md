@@ -16,6 +16,14 @@ DURAARK is a "semantic building information modeling (BIM) archival and retrieva
 
 As architectural data file formats we support building information modeling (BIM) files in the IFC-SPF format and point cloud scans in the E57 format. More information can be found at the http://www.duraark.eu.
 
+## Demo
+
+A public demo of the [DURAARK WorkbenchUI](http://github.com/duraark/workbench-ui) is available [here](http://workbench.duraark.eu). It uses the API of the [DURAARK Service Platform](https://github.com/duraark/duraark-system) to power the GUI. The version running there is v0.7.0.
+
+The bleeding edge version of the whole system is also available on our [development server](http://juliet.cgv.tugraz.at). It is a development system. You've been warned ...
+
+That said, if the server is running you will have the newest development version available there, ready to be explored for currently developed features. It is likely to be buggy, though. The development is targeting v0.8.0 at the moment. See our [release plan](https://github.com/DURAARK/workbench-ui/milestones) for more information on future features.
+
 ## Installation
 
 DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a Web-API and a graphical web application as user interface ([DURAARK WorkbenchUI](https://github.com/DURAARK/workbench-ui/)).
@@ -57,9 +65,11 @@ To setup the environment follow these steps:
 ```js
 > git clone --recursive https://github.com/DURAARK/duraark-system.git
 > cd duraark-system
-> (cd ./duraark-metadata && git submodule init && git submodule update)
-> (cd ./duraark-geometricenrichment && git submodule init && git submodule update)
-> (for repo in duraark-*; do cd $repo && npm install; cd ..; done)
+> (cd duraark-sessions && npm install)
+> (cd duraark-sda && npm install)
+> (cd duraark-digitalpreservation && npm install)
+> (cd duraark-metadata/src && npm install)
+> (cd duraark-geometricenrichment/src && npm install)
 > (cd ./workbench-ui && bower install && npm install)
 > docker-compose -f devenv-compose.yml build
 > docker-compose -f devenv-compose.yml up -d
@@ -82,11 +92,3 @@ We are hosting public API endpoints of the DURAARK Service Platform at following
 * http://data.duraark.eu/services/api/digitalpreservation/
 
 The endpoints provide the respective API documentation.
-
-## Demo
-
-A public demo of the [DURAARK WorkbenchUI](http://github.com/duraark/workbench-ui) is available [here](http://workbench.duraark.eu). It uses the API of the [DURAARK Service Platform](https://github.com/duraark/duraark-system) to power the GUI. The version running there is v0.7.0.
-
-The bleeding edge version of the whole system is also available on our [development server](http://juliet.cgv.tugraz.at). It is a development system. You've been warned ...
-
-That said, if the server is running you will have the newest development version available there, ready to be explored for currently developed features. It is likely to be buggy, though. The development is targeting v0.8.0 at the moment. See our [release plan](https://github.com/DURAARK/workbench-ui/milestones) for more information on future features.

@@ -11,7 +11,7 @@ duraark-sessions:
 duraark-metadata:
   # image: duraark/duraark-metadata:0.7.0
   build: ./duraark-metadata
-  command: nodemon --watch /duraark/microservice/src/api -w /duraark/microservice/src/config src/app.js
+  command: nodemon --watch /duraark/microservice/src/api -w /duraark/microservice/src/config app.js
   ports:
     - "5012:5012"
   volumes_from:
@@ -31,7 +31,7 @@ duraark-sda:
 duraark-geometricenrichment:
   # image: duraark/duraark-geometricenrichment:0.7.0
   build: ./duraark-geometricenrichment
-  command: nodemon --watch /microservice/src/api -w /microservice/src/config src/app.js
+  command: nodemon --watch /microservice/src/api -w /microservice/src/config app.js
   ports:
     - "5014:5014"
   privileged: true
