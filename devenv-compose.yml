@@ -1,7 +1,7 @@
 duraark-sessions:
-  image: duraark/duraark-sessions:0.7.0
-  # build: ./duraark-sessions
-  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config
+  # image: duraark/duraark-sessions:0.7.0
+  build: ./duraark-sessions
+  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5011:5011"
   volumes:
@@ -9,9 +9,9 @@ duraark-sessions:
     - ./duraark-sessions:/duraark/microservice
 
 duraark-metadata:
-  image: duraark/duraark-metadata:0.7.0
-  # build: ./duraark-sessions
-  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config
+  # image: duraark/duraark-metadata:0.7.0
+  build: ./duraark-metadata
+  command: nodemon --watch /duraark/microservice/src/api -w /duraark/microservice/src/config src/app.js
   ports:
     - "5012:5012"
   volumes_from:
@@ -20,17 +20,18 @@ duraark-metadata:
     - ./duraark-metadata:/duraark/microservice
 
 duraark-sda:
-  image: duraark/duraark-sda:0.7.0
-  # build: ./duraark-sda
+  # image: duraark/duraark-sda:0.7.0
+  build: ./duraark-sda
+  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5013:5013"
   volumes:
-    - ./duraark-sda:/microservice
+    - ./duraark-sda:/duraark/microservice
 
 duraark-geometricenrichment:
-  image: duraark/duraark-geometricenrichment:0.7.0
-  # build: ./duraark-geometricenrichment
-  # command: nodemon --watch /microservice/api -w /microservice/config
+  # image: duraark/duraark-geometricenrichment:0.7.0
+  build: ./duraark-geometricenrichment
+  command: nodemon --watch /microservice/src/api -w /microservice/src/config src/app.js
   ports:
     - "5014:5014"
   privileged: true
@@ -41,9 +42,9 @@ duraark-geometricenrichment:
     - /duraark-storage:/duraark-storage
 
 duraark-digitalpreservation:
-  image: duraark/duraark-digitalpreservation:0.7.0
-  # build: ./duraark-digitalpreservation
-  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config
+  # image: duraark/duraark-digitalpreservation:0.7.0
+  build: ./duraark-digitalpreservation
+  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5015:5015"
   links:
@@ -52,10 +53,10 @@ duraark-digitalpreservation:
     - ./duraark-digitalpreservation:/duraark/microservice
 
 workbench-ui:
-  image: local/workbench-ui:0.7.0
-  # build: ./workbench-ui
-  # entrypoint: ember
-  # command: serve --watcher=polling
+  # image: duraark/workbench-ui:0.7.0
+  build: ./workbench-ui
+  entrypoint: ember
+  command: serve --watcher=polling
   ports:
     - "4200:4200"
   environment:
@@ -65,8 +66,8 @@ workbench-ui:
     - ./workbench-ui:/duraark/workbench-ui
 
 web:
-  image: duraark/api-gatekeeper:0.7.0
-  # build: ./api-gatekeeper
+  # image: duraark/api-gatekeeper:0.7.0
+  build: ./api-gatekeeper
   ports:
     - "80:80"
   links:

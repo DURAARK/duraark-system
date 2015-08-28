@@ -1,6 +1,6 @@
 duraark-sessions:
   image: duraark/duraark-sessions:0.7.0
-  exports:
+  ports:
     - "5011:5011"
   volumes:
     - /duraark-storage:/duraark-storage
@@ -40,7 +40,7 @@ workbench-ui:
     - DURAARK_API_ENDPOINT=http://mimas.cgv.tugraz.at
 
 web:
-  image: duraark/api-gatekeeper:0.7.0
+  image: duraark/api-gatekeeper:0.7.1
   ports:
     - "80:80"
   links:
