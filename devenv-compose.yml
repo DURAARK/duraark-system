@@ -27,6 +27,8 @@ duraark-sda:
     - "5013:5013"
   volumes:
     - ./duraark-sda:/duraark/microservice
+  links:
+    - duraark-sdas
 
 duraark-geometricenrichment:
   # image: duraark/duraark-geometricenrichment:0.7.0
@@ -51,6 +53,14 @@ duraark-digitalpreservation:
     - duraark-sessions
   volumes:
     - ./duraark-digitalpreservation:/duraark/microservice
+
+duraark-sdas:
+  image: eccenca/virtuoso7
+  ports:
+    - 8890:8890
+    - 1111:1111
+  volumes:
+    - ../virtuoso/db:/var/lib/virtuoso/db
 
 workbench-ui:
   # image: duraark/workbench-ui:0.7.0
