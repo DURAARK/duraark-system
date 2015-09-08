@@ -69,6 +69,7 @@ workbench-ui:
   command: serve --watcher=polling
   ports:
     - "4200:4200"
+    - "35729:35729"
   environment:
     - DURAARK_API_ENDPOINT=http://localhost
     # - DURAARK_API_USE_PORTS
