@@ -19,6 +19,7 @@ WORKDIR /duraark-system
 
 EXPOSE 80
 
-VOLUME /var/lib/docker
+VOLUME /var/run/docker.sock
+VOLUME /duraark-storage
 
 CMD ["wrapdocker"]
