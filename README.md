@@ -51,7 +51,7 @@ On the host you want to deploy DURAARK execute the following simple steps (assum
 > docker-compose up -d
 ```
 
-This will deploy the system in the current stable version (v0.7.0) and after some setup time the DURAARK WorkbenchUI web application is available at http://<HOST-IP>/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
+This will deploy the system in the current stable version (v0.7.0) and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
 
 ## Development Environment
 
