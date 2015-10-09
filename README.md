@@ -30,17 +30,12 @@ DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a W
 
 ### Windows
 
-#### Prerequisites
-
-* Install [Docker Toolbox](https://www.docker.com/toolbox)
-
-### Installation
-
-* Download and run [duraark-installer](https://github.com/DURAARK/duraark-installer)
+1. Install [Docker Toolbox](https://www.docker.com/toolbox)
+2. Download and run [duraark-installer](https://github.com/DURAARK/duraark-installer)
 
 ### Linux
 
-#### Prerequisites
+#### Prerequisite
 
 1. Install [Docker](https://docs.docker.com/userguide/)
 2. Install [Docker Compose](https://docs.docker.com/compose/)
