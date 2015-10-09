@@ -19,3 +19,6 @@
 [submodule "workbench-ui"]
 	path = workbench-ui
 	url = https://github.com/DURAARK/workbench-ui.git
+[submodule "duraark-pointcloud-viewer"]
+	path = duraark-pointcloud-viewer
+	url = https://github.com/duraark/duraark-pointcloud-viewer.git
