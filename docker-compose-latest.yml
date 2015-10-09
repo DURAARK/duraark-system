@@ -21,9 +21,11 @@ duraark-geometricenrichment:
   image: duraark/duraark-geometricenrichment:latest
   ports:
     - "5014:5014"
-  privileged: true
+  #privileged: true
   volumes_from:
     - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
 
 duraark-digitalpreservation:
   image: duraark/duraark-digitalpreservation:latest

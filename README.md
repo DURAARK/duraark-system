@@ -28,17 +28,22 @@ That said, if the server is running you will have the newest development version
 
 DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a Web-API and a graphical web application as user interface ([DURAARK WorkbenchUI](https://github.com/DURAARK/workbench-ui/)).
 
-### Prerequisites
+### Windows
 
-The deployment is tested on Ubuntu 14.04 LTS. Other Linux distribution should work too, but are not tested. [Docker](https://docs.docker.com/userguide/) and [Docker Compose](https://docs.docker.com/compose/) are used for installation and have to be installed on the system you want to deploy the DURAARK system on. The following instructions assume that Docker and Docker Compose are installed on working on the system. See the above links on how to install them for various platforms. [Git](https://git-scm.com/downloads) has to be installed, too.
+1. Install [Docker Toolbox](https://www.docker.com/toolbox)
+2. Download and run [duraark-installer](https://github.com/DURAARK/duraark-installer)
 
-It is also possible to install DURAARK on Windows and Mac users via the [Docker Toolbox](https://docs.docker.com/installation/windows/). Installing Docker Compose on windows is possible, but seems to be a bit of a hurdle. See this [Stackoverflow answer](http://stackoverflow.com/questions/29289785/how-to-install-docker-compose-on-windows) for details.
+### Linux
 
-Our recommended stack is to install DURAARK on a Docker-compatible Linux system or to use [VirtualBox](https://www.virtualbox.org/) to install a Linux virtual machine on your Windows host.
+#### Prerequisite
 
-### Installation Steps
+1. Install [Docker](https://docs.docker.com/userguide/)
+2. Install [Docker Compose](https://docs.docker.com/compose/)
+3. Install [Git](https://git-scm.com/downloads)
 
-On the host you want to deploy DURAARK execute the following simple steps (assuming that Docker and Docker Compose are installed and working):
+#### Installation
+
+On the host you want to deploy DURAARK execute the following simple steps (assuming that Docker and Docker Compose are installed and installed and working):
 
 ```js
 > git clone https://github.com/DURAARK/duraark-system.git
@@ -46,9 +51,11 @@ On the host you want to deploy DURAARK execute the following simple steps (assum
 > docker-compose up -d
 ```
 
-This will deploy the system in the current stable version (v0.7.0) and after some setup time the DURAARK WorkbenchUI web application is available at http://<HOST-IP>/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
+This will deploy the system in the current stable version (v0.7.0) and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
 
 ## Development Environment
+
+> This description is targeted for Ubuntu 14.04 LTS.
 
 The development environment consists of the following sub-modules:
 
