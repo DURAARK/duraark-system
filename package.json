@@ -6,7 +6,9 @@
     "docker-build": "./scripts/docker-build-image.sh",
     "docker-run": "./scripts/docker-run-image.sh",
     "docker-rm": "./scripts/docker-rm-container.sh",
-    "deploy": "./scripts/deploy-system.sh"
+    "deploy": "./scripts/deploy-system.sh",
+    "dev": "./scripts/deploy-dev-system.sh",
+    "dev-full": "./scripts/deploy-dev-full-system.sh"
   },
   "repository": {
     "type": "git",
