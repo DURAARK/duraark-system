@@ -12,6 +12,7 @@ docker pull duraark/duraark-digitalpreservation
 docker pull duraark/duraark-pointcloud-viewer
 docker pull duraark/api-gatekeeper
 
+(cd ./workbench-ui && git pull)
 docker build -t duraark/workbench-ui:latest ./workbench-ui
 
 docker-compose up -d
