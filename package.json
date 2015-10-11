@@ -1,0 +1,27 @@
+{
+  "name": "duraark-system",
+  "version": "0.8.0-beta",
+  "description": "The DURAARK System",
+  "scripts": {
+    "docker-build": "./scripts/docker-build-image.sh",
+    "docker-run": "./scripts/docker-run-image.sh",
+    "docker-rm": "./scripts/docker-rm-container.sh",
+    "deploy": "./scripts/deploy-system.sh",
+    "dev": "./scripts/deploy-dev-system.sh",
+    "dev-full": "./scripts/deploy-dev-full-system.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DURAARK/duraark-system.git"
+  },
+  "keywords": [
+    "duraark",
+    "workbench-ui"
+  ],
+  "author": "Martin Hecher <martin.hecher@fraunhofer.at>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DURAARK/duraark-system/issues"
+  },
+  "homepage": "https://github.com/DURAARK/duraark-system#readme"
+}
