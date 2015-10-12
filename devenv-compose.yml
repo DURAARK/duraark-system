@@ -61,6 +61,15 @@ duraark-sdas:
   volumes:
     - ../virtuoso/db:/var/lib/virtuoso/db
 
+duraark-pointcloud-viewer:
+  image: duraark/duraark-pointcloud-viewer:latest
+  ports:
+    - "5016:5016"
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
 workbench-ui:
   # image: duraark/workbench-ui:0.7.0
   build: ./workbench-ui
@@ -86,4 +95,5 @@ web:
     - duraark-sda
     - duraark-geometricenrichment
     - duraark-digitalpreservation
+    - duraark-pointcloud-viewer
     - workbench-ui
