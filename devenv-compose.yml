@@ -41,15 +41,14 @@ duraark-geometricenrichment:
     - duraark-sessions
   volumes:
     - ./duraark-geometricenrichment:/microservice
-    - /duraark-storage:/duraark-storage
 
 duraark-digitalpreservation:
   # image: duraark/duraark-digitalpreservation:0.7.0
   build: ./duraark-digitalpreservation
-  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
+  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config -w /duraark/microservice/bindings app.js
   ports:
     - "5015:5015"
-  links:
+  volumes_from:
     - duraark-sessions
   volumes:
     - ./duraark-digitalpreservation:/duraark/microservice
