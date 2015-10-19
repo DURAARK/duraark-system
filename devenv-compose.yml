@@ -1,6 +1,6 @@
 duraark-sessions:
-  # image: duraark/duraark-sessions:0.7.0
-  build: ./duraark-sessions
+  image: duraark/duraark-sessions:lastest
+  # build: ./duraark-sessions
   command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5011:5011"
@@ -9,8 +9,8 @@ duraark-sessions:
     - ./duraark-sessions:/duraark/microservice
 
 duraark-metadata:
-  # image: duraark/duraark-metadata:0.7.0
-  build: ./duraark-metadata
+  image: duraark/duraark-metadata:latest
+  #build: ./duraark-metadata
   command: nodemon --watch /duraark/microservice/src/api -w /duraark/microservice/src/config app.js
   ports:
     - "5012:5012"
@@ -22,11 +22,11 @@ duraark-metadata:
 duraark-sda:
   # image: duraark/duraark-sda:0.7.0
   build: ./duraark-sda
-  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
+  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5013:5013"
-  volumes:
-    - ./duraark-sda:/duraark/microservice
+  # volumes:
+    # - ./duraark-sda:/duraark/microservice
   links:
     - duraark-sdas
 
