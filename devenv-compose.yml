@@ -20,8 +20,8 @@ duraark-metadata:
     - ./duraark-metadata:/duraark/microservice
 
 duraark-sda:
-  # image: duraark/duraark-sda:0.7.0
-  build: ./duraark-sda
+  image: duraark/duraark-sda:latest
+  # build: ./duraark-sda
   # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5013:5013"
@@ -31,8 +31,8 @@ duraark-sda:
     - duraark-sdas
 
 duraark-geometricenrichment:
-  # image: duraark/duraark-geometricenrichment:0.7.0
-  build: ./duraark-geometricenrichment
+  image: duraark/duraark-geometricenrichment:latest
+  #build: ./duraark-geometricenrichment
   command: nodemon --watch /microservice/src/api -w /microservice/src/config app.js
   ports:
     - "5014:5014"
@@ -43,8 +43,8 @@ duraark-geometricenrichment:
     - ./duraark-geometricenrichment:/microservice
 
 duraark-digitalpreservation:
-  # image: duraark/duraark-digitalpreservation:0.7.0
-  build: ./duraark-digitalpreservation
+  image: duraark/duraark-digitalpreservation:latest
+  #build: ./duraark-digitalpreservation
   command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config -w /duraark/microservice/bindings app.js
   ports:
     - "5015:5015"
@@ -71,8 +71,8 @@ duraark-pointcloud-viewer:
     - /var/run/docker.sock:/var/run/docker.sock
 
 workbench-ui:
-  # image: duraark/workbench-ui:0.7.0
-  build: ./workbench-ui
+  image: duraark/workbench-ui:latest
+  #build: ./workbench-ui
   entrypoint: ember
   command: serve --watcher=polling
   ports:
@@ -85,8 +85,8 @@ workbench-ui:
     - ./workbench-ui:/duraark/workbench-ui
 
 web:
-  # image: duraark/api-gatekeeper:0.7.0
-  build: ./api-gatekeeper
+  image: duraark/api-gatekeeper:latest
+  #build: ./api-gatekeeper
   ports:
     - "80:80"
   links:
