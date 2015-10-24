@@ -1,12 +1,13 @@
 duraark-sessions:
-  image: duraark/duraark-sessions:lastest
+  image: duraark/duraark-sessions:latest
   # build: ./duraark-sessions
-  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
+  command: nodemon --watch /opt/duraark-sessions/api -w /opt/duraark-sessions/config app.js
   ports:
     - "5011:5011"
   volumes:
+    # - /media/hecher/0dea5596-8e86-4203-9473-49801beade47/duraark-storage:/duraark-storage
     - /duraark-storage:/duraark-storage
-    - ./duraark-sessions:/duraark/microservice
+    - ./duraark-sessions:/opt/duraark-sessions
 
 duraark-metadata:
   image: duraark/duraark-metadata:latest
@@ -22,11 +23,11 @@ duraark-metadata:
 duraark-sda:
   image: duraark/duraark-sda:latest
   # build: ./duraark-sda
-  # command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
+  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
   ports:
     - "5013:5013"
-  # volumes:
-    # - ./duraark-sda:/duraark/microservice
+  volumes:
+    - ./duraark-sda:/duraark/microservice
   links:
     - duraark-sdas
 
@@ -36,11 +37,14 @@ duraark-geometricenrichment:
   command: nodemon --watch /microservice/src/api -w /microservice/src/config app.js
   ports:
     - "5014:5014"
-  privileged: true
   volumes_from:
     - duraark-sessions
   volumes:
     - ./duraark-geometricenrichment:/microservice
+    - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/duraark-storage
 
 duraark-digitalpreservation:
   image: duraark/duraark-digitalpreservation:latest
