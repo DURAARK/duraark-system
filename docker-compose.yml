@@ -25,6 +25,9 @@ duraark-geometricenrichment:
     - duraark-sessions
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/duraark-storage
 
 duraark-digitalpreservation:
   image: duraark/duraark-digitalpreservation:latest
