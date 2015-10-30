@@ -5,8 +5,8 @@ duraark-sessions:
   ports:
     - "5011:5011"
   volumes:
-    # - /media/hecher/0dea5596-8e86-4203-9473-49801beade47/duraark-storage:/duraark-storage
-    - /duraark-storage:/duraark-storage
+    - /media/hecher/0dea5596-8e86-4203-9473-49801beade47/duraark-storage:/duraark-storage
+    # - /duraark-storage:/duraark-storage
     - ./duraark-sessions:/opt/duraark-sessions
 
 duraark-metadata:
