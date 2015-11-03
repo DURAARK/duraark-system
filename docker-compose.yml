@@ -11,6 +11,8 @@ duraark-metadata:
     - "5012:5012"
   volumes_from:
     - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
 
 duraark-sda:
   image: duraark/duraark-sda:latest
@@ -48,8 +50,9 @@ workbench-ui:
   image: duraark/workbench-ui:latest
   ports:
     - "4200:4200"
-  # environment:
+  environment:
     # - DURAARK_API_ENDPOINT=http://juliet.cgv.tugraz.at
+    - DURAARK_API_ENDPOINT=http://localhost
 
 web:
   image: duraark/api-gatekeeper:latest
