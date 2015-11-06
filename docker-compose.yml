@@ -35,8 +35,12 @@ duraark-digitalpreservation:
   image: duraark/duraark-digitalpreservation:latest
   ports:
     - "5015:5015"
-  volumes:
+  volumes_from:
     - duraark-sessions
+  volumes:
+    - /tmp:/tmp
+  links:
+    - duraark-metadata
 
 duraark-pointcloud-viewer:
   image: duraark/duraark-pointcloud-viewer:latest
