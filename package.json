@@ -8,7 +8,7 @@
     "docker-rm": "./scripts/docker-rm-container.sh",
     "deploy": "./scripts/deploy-system.sh",
     "dev": "./scripts/deploy-dev-system.sh",
-    "dev-full": "./scripts/deploy-dev-full-system.sh"
+    "build-deploy": "./scripts/deploy-from-local-builds.sh"
   },
   "repository": {
     "type": "git",
