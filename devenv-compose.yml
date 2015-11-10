@@ -1,62 +1,65 @@
 duraark-sessions:
-  image: duraark/duraark-sessions:latest
-  # build: ./duraark-sessions
-  command: nodemon --watch /opt/duraark-sessions/api -w /opt/duraark-sessions/config app.js
+  # image: duraark/duraark-sessions:latest
+  build: ./duraark-sessions
+  command: nodemon --watch /opt/duraark-sessions/api -w /opt/duraark-sessions/config /opt/duraark-sessions/app.js
   ports:
     - "5011:5011"
   volumes:
-    - /media/hecher/0dea5596-8e86-4203-9473-49801beade472/duraark-storage:/duraark-storage
+    - /media/hecher/0dea5596-8e86-4203-9473-49801beade474/duraark-storage:/duraark-storage
     # - /duraark-storage:/duraark-storage
     - ./duraark-sessions:/opt/duraark-sessions
 
 duraark-metadata:
-  image: duraark/duraark-metadata:latest
-  #build: ./duraark-metadata
-  command: nodemon --watch /duraark/microservice/src/api -w /duraark/microservice/src/config app.js
+  # image: duraark/duraark-metadata:latest
+  build: ./duraark-metadata
+  command: nodemon --watch /opt/duraark-metadata/src/api -w /opt/duraark-metadata/src/config /opt/duraark-metadata/src/app.js
   ports:
     - "5012:5012"
   volumes_from:
     - duraark-sessions
   volumes:
-    - ./duraark-metadata:/duraark/microservice
+    - ./duraark-metadata:/opt/duraark-metadata
     - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/media/hecher/0dea5596-8e86-4203-9473-49801beade474/duraark-storage
 
 duraark-sda:
-  image: duraark/duraark-sda:latest
-  # build: ./duraark-sda
-  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config app.js
+  # image: duraark/duraark-sda:latest
+  build: ./duraark-sda
+  command: nodemon --watch /opt/duraark-sda/api -w /opt/duraark-sda/config /opt/duraark-sda/app.js
   ports:
     - "5013:5013"
   volumes:
-    - ./duraark-sda:/duraark/microservice
+    - ./duraark-sda:/opt/duraark-sda
   links:
     - duraark-sdas
 
 duraark-geometricenrichment:
-  image: duraark/duraark-geometricenrichment:latest
-  #build: ./duraark-geometricenrichment
-  command: nodemon --watch /microservice/src/api -w /microservice/src/config app.js
+  # image: duraark/duraark-geometricenrichment:latest
+  build: ./duraark-geometricenrichment
+  command: nodemon --watch /opt/duraark-geometricenrichment/api -w /opt/duraark-geometricenrichment/config /opt/duraark-geometricenrichment/app.js
   ports:
     - "5014:5014"
   volumes_from:
     - duraark-sessions
   volumes:
-    - ./duraark-geometricenrichment:/microservice
+    - ./duraark-geometricenrichment:/opt/duraark-geometricenrichment
     - /var/run/docker.sock:/var/run/docker.sock
   environment:
     # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
-    - DURAARK_STORAGE_PATH=/duraark-storage
+    - DURAARK_STORAGE_PATH=/media/hecher/0dea5596-8e86-4203-9473-49801beade474/duraark-storage
 
 duraark-digitalpreservation:
-  image: duraark/duraark-digitalpreservation:latest
-  #build: ./duraark-digitalpreservation
-  command: nodemon --watch /duraark/microservice/api -w /duraark/microservice/config -w /duraark/microservice/bindings app.js
+  # image: duraark/duraark-digitalpreservation:latest
+  build: ./duraark-digitalpreservation
+  command: nodemon --watch /opt/duraark-digitalpreservation/api -w /opt/duraark-digitalpreservation/config -w /opt/duraark-digitalpreservation/bindings /opt/duraark-digitalpreservation/app.js
   ports:
     - "5015:5015"
   volumes_from:
     - duraark-sessions
   volumes:
-    - ./duraark-digitalpreservation:/duraark/microservice
+    - ./duraark-digitalpreservation:/opt/duraark-digitalpreservation
     - /home/hecher/.ssh:/home/hecher/.ssh
   links:
     - duraark-metadata
@@ -79,8 +82,8 @@ duraark-pointcloud-viewer:
     - /var/run/docker.sock:/var/run/docker.sock
 
 workbench-ui:
-  image: duraark/workbench-ui:latest
-  #build: ./workbench-ui
+  # image: duraark/workbench-ui:latest
+  build: ./workbench-ui
   entrypoint: ember
   command: serve --watcher=polling
   ports:
@@ -90,11 +93,11 @@ workbench-ui:
     - DURAARK_API_ENDPOINT=http://localhost
     # - DURAARK_API_USE_PORTS
   volumes:
-    - ./workbench-ui:/duraark/workbench-ui
+    - ./workbench-ui:/opt/workbench-ui
 
 web:
-  image: duraark/api-gatekeeper:latest
-  #build: ./api-gatekeeper
+  # image: duraark/api-gatekeeper:latest
+  build: ./api-gatekeeper
   ports:
     - "80:80"
   links:
