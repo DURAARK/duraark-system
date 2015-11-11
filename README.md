@@ -35,7 +35,7 @@ DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a W
 
 ### Linux
 
-This installation instructions are assuming a Ubuntu 14.04 LTS distribution, but the installation is supported on many other Linux distributions, too.
+> This installation instructions are assuming a Ubuntu 14.04 LTS distribution, but the installation is supported on many other Linux distributions, too.
 
 #### Prerequisite
 
@@ -53,7 +53,7 @@ The DURAARK System uses about 15GB of space. If you are using a virtual machine 
 > docker-compose up -d
 ```
 
-This will deploy the system in the current stable version (v0.7.0) and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
+This will deploy the system in the current stable version and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
 
 ## Development Environment
 
