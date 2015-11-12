@@ -38,7 +38,7 @@ duraark-sda:
 duraark-geometricenrichment:
   # image: duraark/duraark-geometricenrichment:latest
   build: ./duraark-geometricenrichment
-  command: nodemon --watch /opt/duraark-geometricenrichment/api -w /opt/duraark-geometricenrichment/config /opt/duraark-geometricenrichment/app.js
+  command: nodemon --watch /opt/duraark-geometricenrichment/src/api -w /opt/duraark-geometricenrichment/src/config /opt/duraark-geometricenrichment/src/app.js
   ports:
     - "5014:5014"
   volumes_from:
