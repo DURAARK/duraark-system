@@ -31,19 +31,21 @@ DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a W
 ### Windows
 
 1. Install [Docker Toolbox](https://www.docker.com/toolbox)
-2. Download and run [duraark-installer](https://github.com/DURAARK/duraark-installer)
+2. Download and run the [duraark-installer](https://github.com/DURAARK/duraark-installer/wiki/Windows-Installation-Instructions)
 
 ### Linux
 
+> This installation instructions are assuming a Ubuntu 14.04 LTS distribution, but the installation is supported on many other Linux distributions, too.
+
 #### Prerequisite
 
-1. Install [Docker](https://docs.docker.com/userguide/)
-2. Install [Docker Compose](https://docs.docker.com/compose/)
+1. Install [Docker](http://docs.docker.com/engine/installation/ubuntulinux/)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/) (Please read this [short explanation](http://stackoverflow.com/a/32756826) before the installation to circumvent a common error introduced by the formatting of the Docker Compose installation instructions)
 3. Install [Git](https://git-scm.com/downloads)
 
 #### Installation
 
-On the host you want to deploy DURAARK execute the following simple steps (assuming that Docker and Docker Compose are installed and installed and working):
+The DURAARK System uses about 15GB of space. If you are using a virtual machine to install the system we recommend to use at least a 20GB disk for the installation to not run out of space. To deploy execute the following steps (assuming that Docker and Docker Compose are installed and working):
 
 ```js
 > git clone https://github.com/DURAARK/duraark-system.git
@@ -51,7 +53,7 @@ On the host you want to deploy DURAARK execute the following simple steps (assum
 > docker-compose up -d
 ```
 
-This will deploy the system in the current stable version (v0.7.0) and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
+This will deploy the system in the current stable version and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
 
 ## Development Environment
 

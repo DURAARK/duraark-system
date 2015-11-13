@@ -7,4 +7,4 @@ echo "(cd ./microservice-base && ./scripts/docker-build.sh)"
 (cd ./microservice-base && ./scripts/docker-build.sh)
 
 echo "docker-compose -f devenv-compose-build.yml build && docker-compose -f devenv-compose-build.yml up"
-docker-compose -f devenv-compose-build.yml build && docker-compose -f devenv-compose-build.yml up
+docker-compose -f devenv-compose-build.yml build && docker-compose -f devenv-compose-build.yml up -d

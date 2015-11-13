@@ -12,13 +12,14 @@ duraark-metadata:
   #  - "5012:5012"
   volumes_from:
     - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
 
 duraark-sda:
   build: ./duraark-sda
   #ports:
   #  - "5013:5013"
   volumes:
-    - ./duraark-sda:/duraark/microservice
     - /var/run/docker.sock:/var/run/docker.sock
   links:
     - duraark-sdas
@@ -41,6 +42,10 @@ duraark-digitalpreservation:
   #  - "5015:5015"
   volumes_from:
     - duraark-sessions
+  links:
+    - duraark-metadata
+  volumes:
+    - /tmp:/tmp
 
 duraark-sdas:
   image: eccenca/virtuoso7
