@@ -22,9 +22,3 @@
 [submodule "duraark-pointcloud-viewer"]
 	path = duraark-pointcloud-viewer
 	url = https://github.com/duraark/duraark-pointcloud-viewer.git
-[submodule "java-rdf-updater"]
-	path = java-rdf-updater
-	url = git@github.com:DURAARK/java-rdf-updater.git
-[submodule "microservice-base"]
-	path = microservice-base
-	url = git@github.com:DURAARK/microservice-base.git
