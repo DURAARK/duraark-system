@@ -40,7 +40,7 @@ DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a W
 #### Prerequisite
 
 1. Install [Docker](http://docs.docker.com/engine/installation/ubuntulinux/)
-2. Install [Docker Compose](https://docs.docker.com/compose/install/) (Please read this [short explanation](http://stackoverflow.com/a/32756826) before the installation to circumvent a common error introduced by the formatting of the Docker Compose installation instructions)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/)
 3. Install [Git](https://git-scm.com/downloads)
 
 #### Installation
