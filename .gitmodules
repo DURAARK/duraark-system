@@ -22,3 +22,6 @@
 [submodule "duraark-pointcloud-viewer"]
 	path = duraark-pointcloud-viewer
 	url = https://github.com/duraark/duraark-pointcloud-viewer.git
+[submodule "microservice-base"]
+	path = microservice-base
+	url = https://github.com/DURAARK/microservice-base.git
