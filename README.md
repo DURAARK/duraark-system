@@ -45,7 +45,7 @@ DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a W
 
 #### Installation
 
-The DURAARK System uses about 15GB of space. If you are using a virtual machine to install the system we recommend to use at least a 20GB disk for the installation to not run out of space. To deploy execute the following steps (assuming that Docker and Docker Compose are installed and working):
+The DURAARK System uses about 20GB of space. If you are using a virtual machine to install the system we recommend to use at least a 20GB disk for the installation to not run out of space. To deploy execute the following steps (assuming that Docker and Docker Compose are installed and working):
 
 ```js
 > git clone https://github.com/DURAARK/duraark-system.git
