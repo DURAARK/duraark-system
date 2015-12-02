@@ -47,13 +47,22 @@ DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a W
 
 The DURAARK System uses about 20GB of space. If you are using a virtual machine to install the system we recommend to use at least a 20GB disk for the installation to not run out of space. To deploy execute the following steps (assuming that Docker and Docker Compose are installed and working):
 
-```js
+```
 > git clone https://github.com/DURAARK/duraark-system.git
 > cd duraark-system
 > docker-compose up -d
 ```
 
 This will deploy the system in the current stable version and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
+
+The system expects a fixed folder structure to exist already on the host. This is the structure, which you have to create manually for now:
+
+```
+/duraark-storage/
+  sessions/
+```
+
+This will be configurable and automated in a next release.
 
 ## Development Environment
 
