@@ -55,11 +55,10 @@ The DURAARK System uses about 20GB of space. If you are using a virtual machine 
 
 This will deploy the system in the current stable version and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.
 
-The system expects a fixed folder structure to exist already on the host. This is the structure, which you have to create manually for now:
+The system expects a fixed folder structure to exist already on the host. To create the structure use
 
 ```
-/duraark-storage/
-  sessions/
+sudo mkdir -p /duraark-storage/sessions/
 ```
 
 This will be configurable and automated in a next release.
