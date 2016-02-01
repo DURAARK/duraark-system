@@ -1,0 +1,93 @@
+duraark-sessions:
+  build: ./duraark-sessions
+  command: nodemon --watch /opt/duraark-sessions/api -w /opt/duraark-sessions/config /opt/duraark-sessions/app.js
+  volumes:
+    - /home/martin/01_work/duraark/duraark-storage:/duraark-storage
+    - ./duraark-sessions:/opt/duraark-sessions
+
+duraark-metadata:
+  build: ./duraark-metadata
+  command: nodemon --watch /opt/duraark-metadata/src/api -w /opt/duraark-metadata/src/config /opt/duraark-metadata/src/app.js
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./duraark-metadata:/opt/duraark-metadata
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/home/martin/01_work/duraark/duraark-storage
+
+duraark-sda:
+  build: ./duraark-sda
+  command: nodemon --watch /opt/duraark-sda/api -w /opt/duraark-sda/config /opt/duraark-sda/app.js
+  volumes:
+    - ./duraark-sda:/opt/duraark-sda
+  links:
+    - duraark-sdas
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/home/martin/01_work/duraark/duraark-storage
+
+duraark-geometricenrichment:
+  build: ./duraark-geometricenrichment
+  command: nodemon --watch /opt/duraark-geometricenrichment/src/api -w /opt/duraark-geometricenrichment/src/config /opt/duraark-geometricenrichment/src/app.js
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./duraark-geometricenrichment:/opt/duraark-geometricenrichment
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/home/martin/01_work/duraark/duraark-storage
+
+duraark-digitalpreservation:
+  build: ./duraark-digitalpreservation
+  command: nodemon --watch /opt/duraark-digitalpreservation/api -w /opt/duraark-digitalpreservation/config -w /opt/duraark-digitalpreservation/bindings /opt/duraark-digitalpreservation/app.js
+  volumes_from:
+    - duraark-sessions
+  links:
+    - duraark-metadata
+  volumes:
+    - ./duraark-digitalpreservation:/opt/duraark-digitalpreservation
+    - /home/hecher/.ssh:/home/hecher/.ssh
+
+duraark-sdas:
+  image: eccenca/virtuoso7
+  ports:
+    - 8890:8890
+    - 1111:1111
+  volumes:
+    - ../virtuoso/db:/var/lib/virtuoso/db
+
+duraark-pointcloud-viewer:
+  build: duraark-pointcloud-viewer
+  ports:
+    - "5016:5016"
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
+workbench-ui:
+  build: ./workbench-ui
+  entrypoint: ember
+  command: serve --watcher=polling
+  ports:
+    - "35729:35729"
+  volumes:
+    - ./workbench-ui:/opt/workbench-ui
+  environment:
+    - DURAARK_API_ENDPOINT=http://localhost
+
+web:
+  build: ./api-gatekeeper
+  ports:
+    - "80:80"
+  links:
+    - duraark-sessions
+    - duraark-metadata
+    - duraark-sda
+    - duraark-geometricenrichment
+    - duraark-digitalpreservation
+    - duraark-pointcloud-viewer
+    - workbench-ui
