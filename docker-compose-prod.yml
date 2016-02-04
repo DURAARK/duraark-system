@@ -1,0 +1,92 @@
+duraark-sessions:
+  build: ./duraark-sessions
+  #ports:
+  #  - "5011:5011"
+  volumes:
+    # - /media/hecher/0dea5596-8e86-4203-9473-49801beade47/duraark-storage:/duraark-storage
+    - /home/martin/01_work/duraark/duraark-storage:/duraark-storage
+
+duraark-metadata:
+  build: ./duraark-metadata
+  #ports:
+  #  - "5012:5012"
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/home/martin/01_work/duraark/duraark-storage
+
+duraark-sda:
+  build: ./duraark-sda
+  #ports:
+  #  - "5013:5013"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  links:
+    - duraark-sdas
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/home/martin/01_work/duraark/duraark-storage
+
+duraark-geometricenrichment:
+  build: ./duraark-geometricenrichment
+  #ports:
+  #  - "5014:5014"
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  environment:
+    # The outside storage path to an environment variable and link this folder into e.g. pc2bim at runtime
+    - DURAARK_STORAGE_PATH=/home/martin/01_work/duraark/duraark-storage
+
+duraark-digitalpreservation:
+  build: ./duraark-digitalpreservation
+  #ports:
+  #  - "5015:5015"
+  volumes_from:
+    - duraark-sessions
+  links:
+    - duraark-metadata
+  volumes:
+    - /tmp:/tmp
+
+duraark-sdas:
+  image: eccenca/virtuoso7
+  ports:
+    - 8890:8890
+    - 1111:1111
+  volumes:
+    - ../virtuoso/db:/var/lib/virtuoso/db
+
+duraark-pointcloud-viewer:
+  build: duraark-pointcloud-viewer
+  ports:
+    - "5016:5016"
+  volumes_from:
+    - duraark-sessions
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
+workbench-ui:
+  build: ./workbench-ui
+  #ports:
+  #  - "4200:4200"
+  #  - "35729:35729"
+  environment:
+    - DURAARK_API_ENDPOINT=http://localhost
+
+web:
+  build: ./api-gatekeeper
+  ports:
+    - "80:80"
+  links:
+    - duraark-sessions
+    - duraark-metadata
+    - duraark-sda
+    - duraark-geometricenrichment
+    - duraark-digitalpreservation
+    - duraark-pointcloud-viewer
+    - workbench-ui
