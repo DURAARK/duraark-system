@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>duraark-system by DURAARK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">duraark-system</h1>
+      <h2 class="project-tagline">Deployment (and development) environment for the DURAARK system.</h2>
+      <a href="https://github.com/DURAARK/duraark-system" class="btn">View on GitHub</a>
+      <a href="https://github.com/DURAARK/duraark-system/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/DURAARK/duraark-system/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p><a href="https://gitter.im/DURAARK/duraark-system?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/DURAARK/duraark-system"></a></p>
+
+<h1>
+<a id="duraark-system" class="anchor" href="#duraark-system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DURAARK System</h1>
+
+<p>DURAARK is a "semantic building information modeling (BIM) archival and retrieval system". It allows stakeholders in the architecture, engineering and construction (AEC) domain and allows them to carry out the following (meta) use cases:</p>
+
+<ul>
+<li>Deposit 3D architectural objects</li>
+<li>Search and retrieve archived objects</li>
+<li>Maintain semantic digital archive</li>
+<li>Detect differences between planning state and as-built state</li>
+<li>Monitor the evolution of a structure over time</li>
+<li>Identify similar objects within a point cloud scan</li>
+<li>Plan, document and verify retrofitting/energy</li>
+<li>Exploit contextual information for urban planning</li>
+<li>Enrich BIM/IFC model with metadata from a repository</li>
+</ul>
+
+<p>As architectural data file formats we support building information modeling (BIM) files in the IFC-SPF format and point cloud scans in the E57 format. More information can be found at the <a href="http://www.duraark.eu">http://www.duraark.eu</a>.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>A public demo of the <a href="http://github.com/duraark/workbench-ui">DURAARK WorkbenchUI</a> is available <a href="http://workbench.duraark.eu">here</a>. It uses the API of the <a href="https://github.com/duraark/duraark-system">DURAARK Service Platform</a> to power the GUI. The version running there is v0.7.0.</p>
+
+<p>The bleeding edge version of the whole system is also available on our <a href="http://juliet.cgv.tugraz.at">development server</a>. It is a development system. You've been warned ...</p>
+
+<p>That said, if the server is running you will have the newest development version available there, ready to be explored for currently developed features. It is likely to be buggy, though. The development is targeting v0.8.0 at the moment. See our <a href="https://github.com/DURAARK/workbench-ui/milestones">release plan</a> for more information on future features.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>DURAARK is a set of (micro-)services (DURAARK Service Platform) which expose a Web-API and a graphical web application as user interface (<a href="https://github.com/DURAARK/workbench-ui/">DURAARK WorkbenchUI</a>).</p>
+
+<h3>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Windows</h3>
+
+<ol>
+<li>Install <a href="https://www.docker.com/toolbox">Docker Toolbox</a>
+</li>
+<li>Download and run the <a href="https://github.com/DURAARK/duraark-installer/wiki/Windows-Installation-Instructions">duraark-installer</a>
+</li>
+</ol>
+
+<h3>
+<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Linux</h3>
+
+<blockquote>
+<p>This installation instructions are assuming a Ubuntu 14.04 LTS distribution, but the installation is supported on many other Linux distributions, too.</p>
+</blockquote>
+
+<h4>
+<a id="prerequisite" class="anchor" href="#prerequisite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Prerequisite</h4>
+
+<ol>
+<li>Install <a href="http://docs.docker.com/engine/installation/ubuntulinux/">Docker</a>
+</li>
+<li>Install <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
+</li>
+<li>Install <a href="https://git-scm.com/downloads">Git</a>
+</li>
+</ol>
+
+<h4>
+<a id="installation-1" class="anchor" href="#installation-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h4>
+
+<p>The DURAARK System uses about 20GB of space. If you are using a virtual machine to install the system we recommend to use at least a 20GB disk for the installation to not run out of space. To deploy execute the following steps (assuming that Docker and Docker Compose are installed and working):</p>
+
+<pre><code>&gt; git clone https://github.com/DURAARK/duraark-system.git
+&gt; cd duraark-system
+&gt; docker-compose up -d
+</code></pre>
+
+<p>This will deploy the system in the current stable version and after some setup time the DURAARK WorkbenchUI web application is available at http://HOST-IP/ (http://localhost if you did the setup on your local host) and can be accessed in the browser.</p>
+
+<p>The system expects a fixed folder structure to exist already on the host. To create the structure use</p>
+
+<pre><code>sudo mkdir -p /duraark-storage/sessions/
+</code></pre>
+
+<p>This will be configurable and automated in a next release.</p>
+
+<h2>
+<a id="development-environment" class="anchor" href="#development-environment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development Environment</h2>
+
+<blockquote>
+<p>This description is targeted for Ubuntu 14.04 LTS.</p>
+</blockquote>
+
+<p>The development environment consists of the following sub-modules:</p>
+
+<ul>
+<li><a href="https://github.com/DURAARK/duraark-sessions">duraark-sessions</a></li>
+<li><a href="https://github.com/DURAARK/duraark-metadata">duraark-metadata</a></li>
+<li><a href="https://github.com/DURAARK/duraark-sda">duraark-sda</a></li>
+<li><a href="https://github.com/DURAARK/duraark-geometricenrichment">duraark-geometricenrichment</a></li>
+<li><a href="https://github.com/DURAARK/duraark-digitalpreservation">duraark-digitalpreservation</a></li>
+<li><a href="https://github.com/DURAARK/workbench-ui">workbench-ui</a></li>
+<li><a href="https://github.com/DURAARK/api-gatekeeper">api-gatekeeper</a></li>
+</ul>
+
+<p>To setup the environment follow these steps:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> git clone <span class="pl-k">--</span>recursive https<span class="pl-k">:</span><span class="pl-c">//github.com/DURAARK/duraark-system.git</span>
+<span class="pl-k">&gt;</span> cd duraark<span class="pl-k">-</span>system
+<span class="pl-k">&gt;</span> (cd duraark<span class="pl-k">-</span>sessions <span class="pl-k">&amp;&amp;</span> npm install)
+<span class="pl-k">&gt;</span> (cd duraark<span class="pl-k">-</span>sda <span class="pl-k">&amp;&amp;</span> npm install)
+<span class="pl-k">&gt;</span> (cd duraark<span class="pl-k">-</span>digitalpreservation <span class="pl-k">&amp;&amp;</span> npm install)
+<span class="pl-k">&gt;</span> (cd duraark<span class="pl-k">-</span>metadata<span class="pl-k">/</span>src <span class="pl-k">&amp;&amp;</span> npm install)
+<span class="pl-k">&gt;</span> (cd duraark<span class="pl-k">-</span>geometricenrichment<span class="pl-k">/</span>src <span class="pl-k">&amp;&amp;</span> npm install)
+<span class="pl-k">&gt;</span> (cd .<span class="pl-k">/</span>workbench<span class="pl-k">-</span>ui <span class="pl-k">&amp;&amp;</span> bower install <span class="pl-k">&amp;&amp;</span> npm install)
+<span class="pl-k">&gt;</span> docker<span class="pl-k">-</span>compose <span class="pl-k">-</span>f devenv<span class="pl-k">-</span><span class="pl-smi">compose</span>.<span class="pl-smi">yml</span> build
+<span class="pl-k">&gt;</span> docker<span class="pl-k">-</span>compose <span class="pl-k">-</span>f devenv<span class="pl-k">-</span><span class="pl-smi">compose</span>.<span class="pl-smi">yml</span> up <span class="pl-k">-</span>d</pre></div>
+
+<p>This will checkout all sub-repositories and build the dockerized development environment (this step takes a while, you may want to grab a coffee or tea). After building the docker containers are started and you can access the WorkbenchUI at <a href="http://localhost">http://localhost</a>. Changing the source code in a sub-module will live reload the container (except for 'api-gatekeeper', where you have to restart the container manually after an nginx config change).</p>
+
+<h2>
+<a id="platform-support" class="anchor" href="#platform-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Platform Support</h2>
+
+<p>The system is running on Docker-enabled platforms (<a href="https://docs.docker.com/installation/">Docker</a>)</p>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<p>We are hosting public API endpoints of the DURAARK Service Platform at following URLs:</p>
+
+<ul>
+<li><a href="http://data.duraark.eu/services/api/sessions/">http://data.duraark.eu/services/api/sessions/</a></li>
+<li><a href="http://data.duraark.eu/services/api/metadata/">http://data.duraark.eu/services/api/metadata/</a></li>
+<li><a href="http://data.duraark.eu/services/api/sda/">http://data.duraark.eu/services/api/sda/</a></li>
+<li><a href="http://data.duraark.eu/services/api/geometricenrichment/">http://data.duraark.eu/services/api/geometricenrichment/</a></li>
+<li><a href="http://data.duraark.eu/services/api/digitalpreservation/">http://data.duraark.eu/services/api/digitalpreservation/</a></li>
+</ul>
+
+<p>The endpoints provide the respective API documentation.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/DURAARK/duraark-system">duraark-system</a> is maintained by <a href="https://github.com/DURAARK">DURAARK</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
